@@ -1,0 +1,17 @@
+mkdir /Volumes/SSD/ds003721-download/Processed/SSwarper
+
+subjects=(S15)
+for subj in $subjects
+
+do
+    mkdir -p /Volumes/SSD/ds003721-download/Processed/SSwarper/$subj
+    dir_in=/Volumes/SSD/ds003721-download/raw/$subj/anat
+    dir_out=/Volumes/SSD/ds003721-download/Processed/SSwarper/$subj
+sswarper2 \
+-input "$dir_in/${subj}_acq-highres_T1w.nii" \
+-base MNI152_2009_template_SSW.nii.gz \
+-deoblique \
+-subid $subj \
+-odir $dir_out
+
+done

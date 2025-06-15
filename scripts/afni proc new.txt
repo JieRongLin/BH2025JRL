@@ -1,0 +1,48 @@
+mkdir /Volumes/SSD/ds003721-download/Processed/Preprocessing_BI
+dir_base=/Volumes/SSD/ds003721-download/Processed/Preprocessing_BI
+
+subjects=(S05 S06 S07)
+
+for subj in "${subjects[@]}"
+  do
+  mkdir $dir_base/$subj
+  dir_func=/Volumes/SSD/ds003721-download/raw/$subj/func
+  dir_sswarper=/Volumes/SSD/ds003721-download/Processed/SSwarper/$subj
+  dir_out=/Volumes/SSD/ds003721-download/Processed/Preprocessing_BI/$subj
+
+  cd $dir_out
+
+  afni_proc.py \
+  -subj_id ${subj}_BI \
+  -out_dir $dir_out/Results \
+  -dsets $dir_func/${subj}_task-BI_bold.nii \
+  -blocks despike tshift align tlrc volreg mask regress \
+  -copy_anat $dir_sswarper/anatSS.$subj.nii \
+  -anat_has_skull no \
+  -align_unifize_epi local \
+  -align_opts_aea -cost lpc+ZZ \
+      -giant_move \
+      -check_flip \
+  -volreg_align_e2a \
+  -volreg_align_to MIN_OUTLIER \
+  -volreg_tlrc_warp -tlrc_base MNI152_2009_template_SSW.nii.gz \
+  -tlrc_NL_warp \
+  -tlrc_NL_warped_dsets \
+      $dir_sswarper/anatQQ.$subj.nii \
+      $dir_sswarper/anatQQ.$subj.aff12.1D \
+      $dir_sswarper/anatQQ.${subj}_WARP.nii \
+  -volreg_post_vr_allin yes \
+  -volreg_pvra_base_index MIN_OUTLIER \
+  -mask_segment_anat yes \
+  -mask_segment_erode yes \
+  -regress_polort 2 \
+  -regress_anaticor_fast \
+  -regress_ROI CSFe \
+  -regress_apply_mot_types demean deriv \
+  -regress_motion_per_run \
+  -regress_censor_motion 0.3 \
+  -regress_censor_outliers 0.05 \
+  -regress_skip_first_outliers 5 \
+  -html_review_style pythonic \
+  -execute
+done
