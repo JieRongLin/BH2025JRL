@@ -1,1 +1,15 @@
-
+PFCd (dorsal prefrontal cortex)
+ROIs (in Schaefer_2018 atlas)
+7Networks_RH_Default_PFCdPFCm_1
+7Networks_RH_Default_PFCdPFCm_2
+7Networks_RH_Default_PFCdPFCm_3
+7Networks_RH_Default_PFCdPFCm_4
+7Networks_RH_Default_PFCdPFCm_5
+7Networks_RH_Default_PFCdPFCm_6
+7Networks_RH_Default_PFCdPFCm_7
+7Networks_RH_Default_PFCdPFCm_8
+7Networks_RH_Default_PFCdPFCm_9
+7Networks_RH_Default_PFCdPFCm_10
+7Networks_RH_Default_PFCdPFCm_11
+7Networks_RH_Default_PFCdPFCm_12
+7Networks_RH_Default_PFCdPFCm_13
